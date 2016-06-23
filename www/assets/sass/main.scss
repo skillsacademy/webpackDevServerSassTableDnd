@@ -1,0 +1,51 @@
+
+
+body{
+	
+	color:red;
+}
+.wrapper{
+	position:relative;
+	width:300px;
+	border:1px solid #040;
+	padding:10px;
+}
+.dropArea{
+	width:100%;
+	border:1px solid #00f;
+	padding:20px;
+	display:inline-block;
+}
+.dragTarget{
+	display:inline-block;
+	top:0;
+	left:0;
+	width:200px;
+	border:1px solid #090;
+	z-index:2;
+	background:#f92;
+	padding:20px;
+
+	cursor:pointer;
+	
+	-moz-user-select: -moz-none;   
+	-khtml-user-select: none;   
+	-webkit-user-select: none;   
+	-o-user-select: none;   
+	user-select: none;
+
+	&[data-current-state='dragging'],
+	&[data-current-state='moved']{
+		position:absolute;		
+	}
+
+	&[data-current-state='dragging']{
+		background:red;
+	}
+
+	&[data-current-state='tempDropped']{
+		display:none;
+	}	
+}
+
+
