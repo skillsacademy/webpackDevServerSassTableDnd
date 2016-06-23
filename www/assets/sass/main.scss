@@ -1,51 +1,32 @@
 
+@import "partials/_variables";
+@import "partials/_reset";
 
-body{
-	
-	color:red;
-}
-.wrapper{
-	position:relative;
-	width:300px;
-	border:1px solid #040;
-	padding:10px;
-}
-.dropArea{
-	width:100%;
-	border:1px solid #00f;
-	padding:20px;
-	display:inline-block;
-}
-.dragTarget{
-	display:inline-block;
-	top:0;
-	left:0;
-	width:200px;
-	border:1px solid #090;
-	z-index:2;
-	background:#f92;
-	padding:20px;
+/* TODO */
+	/* libraries         */
+	/* grid  */
 
-	cursor:pointer;
-	
-	-moz-user-select: -moz-none;   
-	-khtml-user-select: none;   
-	-webkit-user-select: none;   
-	-o-user-select: none;   
-	user-select: none;
+@import "partials/_body";
+@import "partials/_resources"; /* fonts, images etc...*/
 
-	&[data-current-state='dragging'],
-	&[data-current-state='moved']{
-		position:absolute;		
-	}
 
-	&[data-current-state='dragging']{
-		background:red;
-	}
+/* ########################### */
+/* single elements */
+@import "partials/_commonElements";
+@import "partials/_accessibility";
 
-	&[data-current-state='tempDropped']{
-		display:none;
-	}	
-}
+@import "partials/_unitColours";
 
+
+/* ########################################## */
+/* components             - grouped hierarchies, - forms, blocks,                   */
+
+@import "partials/_gForm";
+
+
+/* page scaffolds                   - header, main, footer etc...                   */
+
+@import "partials/_scaffold";
+
+/* page specific            -  Overrides for anything above.                        */
 

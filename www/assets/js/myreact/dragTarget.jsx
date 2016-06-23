@@ -32,8 +32,8 @@ function getLeftTop(evtXY, startEvtX, startEvtY, elementX, elementY){
 		var left = elementX + deltaX + document.body.scrollLeft;
 		var top = elementY + deltaY + document.body.scrollTop;
 
-		left = (left > 0)?left:0;		
-		top = (top > 0)?top:0;	
+		//left = (left > 0)?left:0;		
+		//top = (top > 0)?top:0;	
 	}
 
 	return {
@@ -80,7 +80,11 @@ function getDropElements(left, top, width, height){
 			arrDroppedElemsAndChildren.push(elemDroppedOnto);
 
 			var nodeListDescendants = elemDroppedOnto.querySelectorAll("*");	
+
+
 			var arrDescendants = Array.prototype.slice.call(nodeListDescendants);
+
+			arrDescendants = filterElementsInsideDrop(arrDescendants, left, top, width, height);
 
 			arrDroppedElemsAndChildren = arrDroppedElemsAndChildren.concat(arrDescendants);
 		}
@@ -88,6 +92,30 @@ function getDropElements(left, top, width, height){
 	}
 
 	return arrDroppedElemsAndChildren;	
+}
+
+function filterElementsInsideDrop(arrDescendants, left, top, width, height){
+	var arr = [];
+	for(var i=0, intLen = arrDescendants.length; i < intLen; ++i){
+		var elem = arrDescendants[i];
+
+
+		var dropOffset = ReactDOM.findDOMNode(elem).getBoundingClientRect();
+		var dropLeft = dropOffset.left;
+		var dropTop = dropOffset.top;
+		var dropHeight = elem.offsetHeight;
+		var dropWidth = elem.offsetWidth;
+
+//console.log('dropLeft',dropLeft);
+//console.log('dropTop',dropTop);
+//console.log('dropWidth',dropWidth);
+//console.log('dropHeight',dropHeight);
+
+		if(top >= dropTop && left >= dropLeft && ((left + width) <= (dropLeft + dropWidth)) && ((top + height) <= (dropTop + dropHeight)) ){
+			arr.push(elem);
+		}
+	}
+	return arr;
 }
 
 
