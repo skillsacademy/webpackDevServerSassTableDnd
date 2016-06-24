@@ -160,8 +160,15 @@ class AppDragContainer extends Component{
 
 	_onDragStart (event){
 		console.log('start ');
+		
 		// firefox fix 
-		event.dataTransfer.setData('text/plain', 'node');		
+		if(event.dataTransfer){
+			event.dataTransfer.setData('text/plain', 'node');	
+		}
+		var evtXY = getEvtXY(event);
+		var elemClickedOn = document.elementFromPoint(evtXY.evtX, evtXY.evtY);
+
+		console.log('elemDrag = ' +  elemClickedOn);
 	}
 
 
